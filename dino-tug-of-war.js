@@ -60,6 +60,21 @@ const questions = [
   let qIndexB = 0;
   let winner = null;
 
+  let bgmStarted = false;
+  const bgMusic = new Audio('sounds/bgm.mp3');
+  bgMusic.loop = true;
+  bgMusic.volume = 0.2;
+
+  const correctSound = new Audio('sounds/correct.mp3');
+  const wrongSound = new Audio('sounds/wrong.mp3');
+
+  function checkBGM() {
+      if (!bgmStarted) {
+          bgMusic.play().catch(e => console.log(e));
+          bgmStarted = true;
+      }
+  }
+
   const questionAEl = document.getElementById('question-a');
   const questionBEl = document.getElementById('question-b');
   const answersAEl = document.getElementById('answers-a');
@@ -140,9 +155,15 @@ const questions = [
   }
 
   function handleAnswerA(selected, correct) {
+      checkBGM();
       if (selected === correct) {
+          correctSound.currentTime = 0;
+          correctSound.play().catch(e => console.log(e));
           scoreA = Math.min(100, scoreA + 5);
           scoreB = Math.max(0, scoreB - 5);
+      } else {
+          wrongSound.currentTime = 0;
+          wrongSound.play().catch(e => console.log(e));
       }
       qIndexA++;
       checkWinner();
@@ -150,9 +171,15 @@ const questions = [
   }
 
   function handleAnswerB(selected, correct) {
+      checkBGM();
       if (selected === correct) {
+          correctSound.currentTime = 0;
+          correctSound.play().catch(e => console.log(e));
           scoreB = Math.min(100, scoreB + 5);
           scoreA = Math.max(0, scoreA - 5);
+      } else {
+          wrongSound.currentTime = 0;
+          wrongSound.play().catch(e => console.log(e));
       }
       qIndexB++;
       checkWinner();

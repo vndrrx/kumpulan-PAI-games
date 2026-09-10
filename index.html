@@ -263,7 +263,23 @@
             document.getElementById('main-content').style.display = 'flex';
         }
 
+        let bgMusic = new Audio('sounds/bgm.mp3');
+        bgMusic.loop = true;
+        bgMusic.volume = 0.2;
+        let bgmStarted = false;
+
+        document.body.addEventListener('click', () => {
+            if(!bgmStarted) {
+                bgMusic.play().catch(e => console.log(e));
+                bgmStarted = true;
+            }
+        });
+
         function enterMain() {
+            if(!bgmStarted) {
+                bgMusic.play().catch(e => console.log(e));
+                bgmStarted = true;
+            }
             sessionStorage.setItem('introShown', 'true');
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
