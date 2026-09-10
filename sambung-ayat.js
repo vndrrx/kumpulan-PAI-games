@@ -39,6 +39,7 @@ function checkBGM() {
         bgmStarted = true;
     }
 }
+document.addEventListener('click', checkBGM);
 
 const colors = ['bg-red', 'bg-orange', 'bg-green', 'bg-pink', 'bg-blue', 'bg-teal', 'bg-purple', 'bg-yellow'];
 

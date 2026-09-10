@@ -52,6 +52,7 @@ function checkBGM() {
         bgmStarted = true;
     }
 }
+document.addEventListener('click', checkBGM);
 
 const questionEl = document.getElementById('question-text');
 const scoreEl = document.getElementById('score-val');

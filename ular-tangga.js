@@ -51,6 +51,14 @@ bgMusic.volume = 0.2;
 const correctSound = new Audio('correct.mp3');
 const wrongSound = new Audio('wrong.mp3');
 
+function checkBGM() {
+    if (!bgmStarted) {
+        bgMusic.play().catch(e => console.log("Audio play prevented: ", e));
+        bgmStarted = true;
+    }
+}
+document.addEventListener('click', checkBGM);
+
 const diceFaces = ['🎲', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
 
 function createBoard() {
@@ -205,10 +213,7 @@ let diceRollCount = 0;
 async function rollDice() {
     if (isAnimating) return;
     
-    if (!bgmStarted) {
-        bgMusic.play().catch(e => console.log("Audio play prevented: ", e));
-        bgmStarted = true;
-    }
+    checkBGM();
     
     isAnimating = true;
     

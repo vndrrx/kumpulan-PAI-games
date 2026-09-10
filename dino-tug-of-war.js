@@ -74,6 +74,7 @@ const questions = [
           bgmStarted = true;
       }
   }
+  document.addEventListener('click', checkBGM);
 
   const questionAEl = document.getElementById('question-a');
   const questionBEl = document.getElementById('question-b');

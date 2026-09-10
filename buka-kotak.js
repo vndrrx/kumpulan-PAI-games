@@ -41,6 +41,14 @@ bgMusic.volume = 0.2;
 const correctSound = new Audio('correct.mp3');
 const wrongSound = new Audio('wrong.mp3');
 
+function checkBGM() {
+    if (!bgmStarted) {
+        bgMusic.play().catch(e => console.log("Audio play prevented: ", e));
+        bgmStarted = true;
+    }
+}
+document.addEventListener('click', checkBGM);
+
 const timerDisplay = document.getElementById('timer-display');
 const scoreDisplay = document.getElementById('score-display');
 const gridView = document.getElementById('grid-view');
@@ -106,10 +114,7 @@ function renderGrid() {
 }
 
 function openBox(idx) {
-    if (!bgmStarted) {
-        bgMusic.play().catch(e => console.log("Audio play prevented: ", e));
-        bgmStarted = true;
-    }
+    checkBGM();
     
     activeBoxIndex = idx;
     const q = questions[idx];
