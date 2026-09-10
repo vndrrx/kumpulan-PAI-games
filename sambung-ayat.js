@@ -26,12 +26,12 @@ let matchedBoxes = {}; // format: "qIndex-wordIndex": "word"
 let draggedOption = null;
 
 let bgmStarted = false;
-const bgMusic = new Audio('sounds/bgm.mp3');
+const bgMusic = new Audio('bgm.mp3');
 bgMusic.loop = true;
 bgMusic.volume = 0.2;
 
-const correctSound = new Audio('sounds/correct.mp3');
-const wrongSound = new Audio('sounds/wrong.mp3');
+const correctSound = new Audio('correct.mp3');
+const wrongSound = new Audio('wrong.mp3');
 
 function checkBGM() {
     if (!bgmStarted) {
